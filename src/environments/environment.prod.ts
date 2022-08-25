@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  AUTH_API: "http://localhost:8080/",
+  AUTH_API: "https://freefood-api.herokuapp.com/",
   USER_CONTROLLER: "user",
   RESTAURANT_CONTROLLER: "restaurant",
   MENU_CONTROLLER: "menu",
