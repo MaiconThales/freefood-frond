@@ -1,27 +1,34 @@
-# Freefood
+# App Freefood Front-end
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+Projeto de teste para fazer algo semelhante ao IFood. Utilizando Angular 14.
 
-## Development server
+## Feito Com:
+- Visual Studio: https://code.visualstudio.com/
+- Angular: https://angular.io
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Links utilizados para auxilios
+- Spring Security: https://blog.softtek.com/en/token-based-api-authentication-with-spring-and-jwt
+- Spring Security com detalhes e GIT para auxilio: https://medium.com/@akhileshanand/spring-boot-api-security-with-jwt-and-role-based-authorization-fea1fd7c9e32
+- Spring Security with Angular: https://www.bezkoder.com/spring-boot-jwt-authentication/, https://www.bezkoder.com/spring-boot-refresh-token-jwt/ e https://www.bezkoder.com/angular-12-refresh-token/
+- https://imasters.com.br/angular/publicando-uma-aplicacao-angular-no-heroku
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 📚 Bibliotecas utilizas no projeto
+### Angular Material:
+- Link: https://material.angular.io
+- Comando: 'ng add @angular/material'
+### ngx-translate:
+- Link: https://github.com/ngx-translate/core
+- Comandos: 'npm install @ngx-translate/core --save' e 'npm install @ngx-translate/http-loader --save'
+### flex-layout:
+- Link: https://github.com/angular/flex-layout
+- Comando: npm i -s @angular/flex-layout @angular/cdk
+### Router Guard:
+- Comando abaixo é para implementar o GUARD para quando estiver logado.
+- Comando: npm install --save @auth0/angular-jwt
+- Comando abaixo é para implementar o GUARD por permissão de user.
+- Comando: npm install --save jwt-decode
+### Sketeton:
+- Link: https://www.npmjs.com/package/ngx-skeleton-loader
+### ngx-mask
+- Link: https://www.npmjs.com/package/ngx-mask
+- Comando: npm i ngx-mask
