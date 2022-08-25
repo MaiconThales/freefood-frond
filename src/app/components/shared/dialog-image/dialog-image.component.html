@@ -1,0 +1,34 @@
+<form [formGroup]="imageForm" class="menu-form">
+    <!-- Image Preview -->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div class="imagePreview">
+            <img id="img" [src]="imageURL">
+        </div>
+    </div>
+
+    <!--Image upload-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <input accept="image/png, image/jpeg" formControlName="image" type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+        <div class="file-upload">
+            {{filaName}}
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <!--Btns-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div>
+            <button (click)="onNoClick();" mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_CLOSE' | translate}}" matTooltipPosition="left">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button class="button-general-save" (click)="onSubmit()" type="submit" [disabled]="!imageForm.valid || imageForm.controls['image'].value == ''"
+                mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_SAVE' | translate}}" matTooltipPosition="after">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</form>

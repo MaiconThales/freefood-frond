@@ -1,0 +1,55 @@
+<div class="view">
+    <!--Labels-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <label id="example-radio-group-label">
+            {{'ADDRESS.LABEL_SELECT_ADDRESS' | translate}}:
+        </label>
+    </div>
+
+    <!--Address-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">        
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="radio-group"
+                [(ngModel)]="selectAddressId">
+                <mat-radio-button [checked]="selectAddressId == a.id" class="radio-button" *ngFor="let a of address" [value]="a.id">
+                    <mat-divider></mat-divider>
+                    <div>
+                        <p>
+                            <span class="text-general">{{'ADDRESS.LABEL_STREET' | translate}}:</span>
+                            {{a.street}}
+                        </p>
+                        <p>
+                            <span class="text-general">{{'ADDRESS.LABEL_DISTRICT' | translate}}:</span>
+                            {{a.district}}
+                        </p>
+                        <p>
+                            <span class="text-general">{{'ADDRESS.LABEL_NUMBER' | translate}}:</span>
+                            {{a.number}}
+                        </p>
+                        <p>
+                            <span class="text-general">{{'ADDRESS.LABEL_COMPLEMENT' | translate}}:</span>
+                            <span *ngIf="a.complement != ''"> {{a.complement}}</span>
+                            <span *ngIf="a.complement == ''"> {{'PROFILE.NO_DEFINE' | translate}}</span>
+                        </p>
+                    </div>
+                    <mat-divider></mat-divider>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <!--Btns-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div>
+            <button (click)="onNoClick();" mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_CLOSE' | translate}}" matTooltipPosition="left">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button class="button-general-save" (click)="alterAddress()"
+                mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_SAVE' | translate}}" matTooltipPosition="after">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

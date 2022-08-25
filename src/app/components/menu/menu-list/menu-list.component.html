@@ -1,0 +1,115 @@
+<div class="views" *ngIf="!isLoaderRestaurant && !isLoaderMenu">
+    <!--Title-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <h1 class="title-general">{{'MENU.TITLE_PAGE' | translate}}</h1>
+    </div>
+
+    <!--Btn Search Restaurant-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="end none">
+        <div>
+            <form class="example-form">
+                <mat-form-field appearance="standard">
+                    <mat-label>{{'MENU.LABEL_RESTAURANT' | translate}}</mat-label>
+                    <input type="text" matInput [formControl]="restaurantSelect" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+        <div>
+            <mat-button-toggle-group #group="matButtonToggleGroup">
+                <mat-button-toggle (click)="callSearch()" value="left" aria-label="Text align left" matTooltip="{{'GLOBAL_WORD.DESCRIPTION_LABEL_SEARCH' | translate}}" matTooltipPosition="left">
+                    <mat-icon>search</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle (click)="clearSearch()" value="rigth" aria-label="Text align rigth" matTooltip="{{'GLOBAL_WORD.DESCRIPTION_LABEL_CLEAR' | translate}}" matTooltipPosition="above">
+                    <mat-icon> clear_all</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    
+    <!--Btn New Menu-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="end none">
+        <button mat-button class="button-general" (click)="openDialogRegister(1, null)">
+            {{'MENU.BTN_NEW' | translate}}
+        </button>
+    </div>
+    
+    <!--Table-->
+    <div class="table-general" [hidden]="menus.length == 0">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label> {{'MENU.FILTER' | translate}} </mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+        </div>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'MENU.LABEL_ID' | translate}}
+                    </th>
+                    <td mat-cell *matCellDef="let row"> {{row.idMenu}} </td>
+                </ng-container>
+
+                <!-- NAME Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'MENU.LABEL_NAME' | translate}}
+                    </th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <!-- RESTAURANT Column -->
+                <ng-container matColumnDef="restaurant">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'MENU.LABEL_RESTAURANT' | translate}}
+                    </th>
+                    <td mat-cell *matCellDef="let row"> {{row.restaurant.name}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="options">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        {{'GLOBAL_WORD.OPTIONS' | translate}}
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button (click)="openDialogImage(row)"  matTooltip="{{'GLOBAL_WORD.DESCRIPTION_LABEL_IMAGE' | translate}}" matTooltipPosition="left">
+                            <mat-icon>add_photo_alternate</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="openDialogRegister(2, row)" matTooltip="{{'GLOBAL_WORD.DESCRIPTION_LABEL_EDIT' | translate}}" matTooltipPosition="above">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="openDialogRemove(row)"  matTooltip="{{'GLOBAL_WORD.DESCRIPTTION_LABEL_DELETE' | translate}}" matTooltipPosition="right">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">{{'MENU.FILTER_NO_DATA' |
+                        translate}} "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of menus"></mat-paginator>
+        </div>
+    </div>
+
+    <!--Info no data-->
+    <div [hidden]="menus.length > 0">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            {{'MENU.NO_DATA' | translate}}
+        </div>
+    </div>
+</div>

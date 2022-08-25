@@ -1,0 +1,49 @@
+<form [formGroup]="requestForm" class="menu-form">
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <h2 class="title-general">
+            {{'REQUEST.TITLE_DIALOG_REQUEST_DETAIL' | translate}}
+        </h2>
+    </div>
+
+    <div formGroupName="menu">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'REQUEST.LABEL_MENU_NAME' | translate}}
+                </mat-label>
+                <input matInput id="menu_name" type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>{{'REQUEST.LABEL_MENU_DESCRIPTION' | translate}}</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <div formGroupName="restaurant">
+                <mat-form-field appearance="standard">
+                    <mat-label>
+                        {{'REQUEST.LABEL_RESTAURANT_NAME' | translate}}
+                    </mat-label>
+                    <input matInput id="restaurant_name" type="text" formControlName="name">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'REQUEST.LABEL_AMOUNT' | translate}}
+                </mat-label>
+                <input matInput id="amount" type="number" formControlName="amount">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'REQUEST.LABEL_OBSERVATION' | translate}}
+                </mat-label>
+                <input matInput id="observation" type="text" formControlName="observation">
+            </mat-form-field>
+        </div>
+    </div>
+</form>

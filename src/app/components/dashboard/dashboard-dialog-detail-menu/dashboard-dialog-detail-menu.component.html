@@ -1,0 +1,30 @@
+<div>
+    <!--Title-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <h2 class="title-general">
+            {{'DASHBOARD.TITLE_DIALOG_MENU_DETAIL' | translate}}
+        </h2>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-list>
+            <mat-list-item>
+                {{'DASHBOARD.NAME_MENU_DIALOG' | translate}}: {{data.name}}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{'DASHBOARD.DESCRIPTION_MENU_DIALOG' | translate}}: {{data.description}}
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                {{'DASHBOARD.NAME_RESTAURANT_MENU_DIALOG' | translate}}: {{data.restaurant.name}}
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <button mat-icon-button class="button-general-save" (click)="addShoppingCar()" matTooltip="{{'DASHBOARD.ADD_MENU_SHOP' | translate}}" matTooltipPosition="right">
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+    </div>
+</div>

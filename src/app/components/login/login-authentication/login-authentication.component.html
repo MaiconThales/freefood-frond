@@ -1,0 +1,42 @@
+<div *ngIf="!isLoader">
+    <form [formGroup]="loginForm" novalidate>
+        <div class="container">
+            <!--Username-->
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                <mat-form-field appearance="standard">
+                    <mat-label>
+                        {{'LOGIN.LABEL_USERNAME' | translate}}
+                    </mat-label>
+                    <input id="username" matInput type="username" formControlName="username" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                        {{'LOGIN.MSG_INPUT_USERNAME' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <!--Password-->
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                <mat-form-field appearance="standard">
+                    <mat-label>
+                        {{'LOGIN.LABEL_PASSWORD' | translate}}
+                    </mat-label>
+                    <input id="password" autocomplete="password" matInput type="password" formControlName="password"
+                        [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        {{'LOGIN.MSG_INPUT_PASSWORD' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_FEMALE' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <!--Btn-->
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                <button mat-button (click)="openDialogCreateUser()">
+                    {{'LOGIN.BTN_CREATE_USER' | translate}}
+                </button>
+                <button mat-button class="button-general" color="basic" (click)="onSubmit()" [disabled]="!loginForm.valid">
+                    {{'LOGIN.BTN_LOGIN' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

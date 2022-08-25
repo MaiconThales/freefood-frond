@@ -1,0 +1,120 @@
+<div class="view" *ngIf="!isLoaderAddress">
+    <!--With Data-->
+    <div *ngIf="menusSelect.length > 0">
+        <form [formGroup]="generalForm">
+            <!--Menus-->
+            <div formArrayName="request">
+                <div *ngFor="let r of request.controls; let i=index">
+                    <div [formGroupName]="i">
+                        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                            <mat-card>
+                                <mat-card-content>
+                                    <!--Inputs for info data-->
+                                    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px"
+                                        fxLayoutAlign="center center">
+                                        <div formGroupName="menu">
+                                            <mat-form-field appearance="standard">
+                                                <mat-label>
+                                                    {{'SHOPPING_CAR.LABEL_PRODUCT' | translate}}
+                                                </mat-label>
+                                                <input matInput id="name" type="text" formControlName="name">
+                                            </mat-form-field>
+                                            <mat-form-field appearance="standard">
+                                                <mat-label>
+                                                    {{'SHOPPING_CAR.LABEL_DESCRIPTION' | translate}}
+                                                </mat-label>
+                                                <input matInput id="description" type="text"
+                                                    formControlName="description">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <!--Inputs for insert data-->
+                                    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px"
+                                        fxLayoutAlign="center center">
+                                        <mat-form-field appearance="standard">
+                                            <mat-label>
+                                                Amount
+                                            </mat-label>
+                                            <input matInput id="amount" type="number" formControlName="amount">
+                                            <mat-error *ngIf="r.get('amount')?.hasError('required')">
+                                                {{'RESTAURANT.MSG_INPUT_NAME' | translate}}
+                                                <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE'
+                                                    |
+                                                    translate}}</strong>
+                                            </mat-error>
+                                            <mat-error *ngIf="r.get('amount')?.hasError('min')">
+                                                Tem valor mínimo
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <mat-form-field class="input-full-width" appearance="standard">
+                                            <mat-label>Observation</mat-label>
+                                            <textarea matInput formControlName="observation"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </mat-card-content>
+                                <mat-card-actions align="end">
+                                    <button mat-button (click)="removeItemShoppingCar(i)">{{'GLOBAL_WORD.WORD_REMOVE' |
+                                        translate}}</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Address-->
+            <div *ngIf="addressSelect != undefined">
+                <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                    <mat-card>
+                        <mat-card-title>
+                            {{'SHOPPING_CAR.LABEL_DELIVERY_ADDRESS' | translate}}
+                        </mat-card-title>
+                        <mat-card-content>
+                            <div>
+                                <p>
+                                    <span class="text-general">{{'ADDRESS.LABEL_STREET' | translate}}:</span>
+                                    {{addressSelect.street}}
+                                </p>
+                                <p>
+                                    <span class="text-general">{{'ADDRESS.LABEL_DISTRICT' | translate}}:</span>
+                                    {{addressSelect.district}}
+                                </p>
+                                <p>
+                                    <span class="text-general">{{'ADDRESS.LABEL_NUMBER' | translate}}:</span>
+                                    {{addressSelect.number}}
+                                </p>
+                                <p>
+                                    <span class="text-general">{{'ADDRESS.LABEL_COMPLEMENT' | translate}}:</span>
+                                    <span *ngIf="addressSelect.complement != ''"> {{addressSelect.complement}}</span>
+                                    <span *ngIf="addressSelect.complement == ''"> {{'PROFILE.NO_DEFINE' |
+                                        translate}}</span>
+                                </p>
+                            </div>
+                        </mat-card-content>
+                        <mat-card-actions align="end">
+                            <button mat-button (click)="openDialogSelectAddress()">{{'SHOPPING_CAR.LABEL_CHANGE_ADDRESS' | translate}}</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+            <!--No Address-->
+            <div *ngIf="addressSelect == undefined">
+                <p>Não há endereço!</p>
+            </div>
+            <!--Btns-->
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+                <div>
+                    <button class="button-general-save" type="submit"
+                        [disabled]="!generalForm.valid" (click)="onSubmit()" mat-icon-button>
+                        <mat-icon>check</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--No Data-->
+    <div *ngIf="menusSelect.length == 0">
+        <p>Não há nada na lista de compras</p>
+    </div>
+</div>

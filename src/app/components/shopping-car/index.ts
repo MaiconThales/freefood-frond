@@ -1,0 +1,1 @@
+export * from './shopping-car/shopping-car.component';

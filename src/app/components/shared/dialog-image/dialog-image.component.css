@@ -1,0 +1,16 @@
+.input-full-width {
+    width: 80%;
+}
+.file-input {
+    display: none;
+}
+#img {
+    width: 100%;
+    height: 17em;
+    background: no-repeat center;
+    background-size: cover;
+}
+.imagePreview {
+    display:inline-block;
+    margin: 4px;
+}

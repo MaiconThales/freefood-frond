@@ -1,0 +1,16 @@
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <h3>{{'GLOBAL_WORD.DESCRIPTION_REMOVE' | translate}}</h3>
+</div>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <div>
+        <button (click)="onNoClick();" mat-icon-button>
+            {{ 'GLOBAL_WORD.NO' | translate}}
+        </button>
+    </div>
+    <div>
+        <button (click)="removeAction()" mat-icon-button>
+            {{ 'GLOBAL_WORD.YES' | translate}}
+        </button>
+    </div>
+</div>

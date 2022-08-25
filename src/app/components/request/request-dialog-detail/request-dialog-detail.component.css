@@ -1,0 +1,9 @@
+mat-form-field input {
+    color: black;
+}
+mat-form-field textarea {
+    color: black;
+}
+mat-form-field mat-label {
+    color: black;
+}

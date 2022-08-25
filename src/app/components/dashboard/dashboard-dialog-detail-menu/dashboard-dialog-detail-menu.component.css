@@ -1,0 +1,8 @@
+mat-card {
+    width: 100%;
+}
+mat-list {
+    border-style: solid;
+    border-radius: 9px;
+    border-color: #e0e0e0;
+}

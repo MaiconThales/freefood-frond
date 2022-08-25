@@ -1,0 +1,136 @@
+<div *ngIf="!isLoaderDataUser && !isLoaderAddress">
+    <form [formGroup]="userEditForm">
+        <!--Title-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <h1 class="title-general">{{'PROFILE.TITLE_ALTER_USER' | translate}}</h1>
+        </div>
+        <!--Username && password-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_USERNAME' | translate}}
+                </mat-label>
+                <input matInput id="username" type="text" formControlName="username">
+                <mat-error *ngIf="userEditForm.controls['username'].hasError('required')">
+                    {{'PROFILE.MSG_INPUT_USERNAME' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' |
+                        translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_PASSWORD' | translate}}
+                </mat-label>
+                <input matInput id="password" autocomplete="password" type="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <!--Email && language-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_EMAIL' | translate}}
+                </mat-label>
+                <input matInput id="email" type="email" formControlName="email">
+                <mat-error *ngIf="userEditForm.controls['email'].hasError('required')">
+                    {{'PROFILE.MSG_INPUT_EMAIL' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' |
+                        translate}}</strong>
+                </mat-error>
+                <mat-error *ngIf="userEditForm.controls['email'].hasError('email')">
+                    {{'GLOBAL_WORD.EMAIL_INVALID' | translate}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_LANGUAGE' | translate}}
+                </mat-label>
+                <mat-select formControlName="language" name="language">
+                    <mat-option *ngFor="let l of language" [value]="l">
+                        {{l | translate}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="userEditForm.controls['language'].hasError('required')">
+                    {{'PROFILE.MSG_INPUT_LANGUAGE' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_FEMALE' |
+                        translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <!--Name && phone-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_NAME' | translate}}
+                </mat-label>
+                <input matInput id="name" type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>
+                    {{'PROFILE.LABEL_PHONE' | translate}}
+                </mat-label>
+                <input matInput id="phone" type="text" formControlName="phone" mask="(00) 0000 0000||(00) 00000 0000">
+            </mat-form-field>
+        </div>
+        <!--Photo-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <button [disabled]="isLoaderDataUser" mat-icon-button (click)="openDialogImage()"  matTooltip="{{'GLOBAL_WORD.DESCRIPTION_LABEL_IMAGE' | translate}}" matTooltipPosition="right">
+                <mat-icon>add_photo_alternate</mat-icon>
+            </button>
+        </div>
+
+        <!--Address-->
+        <div fxLayout="row wrap" fxLayoutAlign=" none">
+            <div *ngFor="let a of address">
+                <mat-card class="card-address">
+                    <mat-card-content>
+                        <div>
+                            <p>
+                                <span class="text-general">{{'ADDRESS.LABEL_STREET' | translate}}:</span> {{a.street}}
+                            </p>
+                            <p>
+                                <span class="text-general">{{'ADDRESS.LABEL_DISTRICT' | translate}}:</span>
+                                {{a.district}}
+                            </p>
+                            <p>
+                                <span class="text-general">{{'ADDRESS.LABEL_NUMBER' | translate}}:</span> {{a.number}}
+                            </p>
+                            <p>
+                                <span class="text-general">{{'ADDRESS.LABEL_COMPLEMENT' | translate}}:</span>
+                                <span *ngIf="a.complement != ''"> {{a.complement}}</span>
+                                <span *ngIf="a.complement == ''"> {{'PROFILE.NO_DEFINE' | translate}}</span>
+                            </p>
+                            <p>
+                                <span class="text-general">{{'ADDRESS.IS_DEFAULT' | translate}}:</span>
+                                <span *ngIf="a.isDefault"> {{'GLOBAL_WORD.YES' | translate}}</span>
+                                <span *ngIf="!a.isDefault"> {{'GLOBAL_WORD.NO' | translate}}</span>
+                            </p>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div fxLayout="row wrap" fxLayoutAlign="center center">
+                            <button mat-button (click)="openDialogAddress(a)" matTooltip="{{'GLOBAL_WORD.WORD_EDIT_ADDRESS' | translate}}"
+                                matTooltipPosition="left">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-button (click)="deleteAddress(a.id)" matTooltip="{{'GLOBAL_WORD.WORD_REMOVE_ADDRESS' | translate}}"
+                                matTooltipPosition="after">
+                                <mat-icon>remove_circle_outline</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+
+        <!--Btns-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+            <div>
+                <button class="button-general-save" (click)="openDialogAddress(null)" mat-icon-button
+                    matTooltip="{{'GLOBAL_WORD.WORD_ADDRESS' | translate}}" matTooltipPosition="left">
+                    <mat-icon>add_circle_outline</mat-icon>
+                </button>
+                <button class="button-general-save" (click)="onSubmit()" type="submit" [disabled]="!userEditForm.valid || isLoaderDataUser"
+                    mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_SAVE' | translate}}" matTooltipPosition="after">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

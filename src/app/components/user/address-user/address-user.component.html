@@ -1,0 +1,74 @@
+<form [formGroup]="addressForm">
+    <!--Title-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        {{'ADDRESS.TITLE_ADDRESS' | translate}}
+    </div>
+
+    <!--Street and District-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'ADDRESS.LABEL_STREET' | translate}}
+            </mat-label>
+            <input matInput id="street" type="text" formControlName="street">
+            <mat-error *ngIf="addressForm.controls['street'].hasError('required')">
+                {{'ADDRESS.MSG_INPUT_STREET' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_FEMALE' |
+                    translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'ADDRESS.LABEL_DISTRICT' | translate}}
+            </mat-label>
+            <input matInput id="district" type="text" formControlName="district">
+            <mat-error *ngIf="addressForm.controls['district'].hasError('required')">
+                {{'ADDRESS.MSG_INPUT_DISTRICT' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' |
+                    translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <!--Number and Complement-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'ADDRESS.LABEL_NUMBER' | translate}}
+            </mat-label>
+            <input matInput id="number" type="number" formControlName="number">
+            <mat-error *ngIf="addressForm.controls['number'].hasError('required')">
+                {{'ADDRESS.MSG_INPUT_NUMBER' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' |
+                    translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'ADDRESS.LABEL_COMPLEMENT' | translate}}
+            </mat-label>
+            <input matInput id="complement" type="text" formControlName="complement">
+        </mat-form-field>
+    </div>
+
+    <!--isDefault-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <section>
+            <mat-checkbox formControlName="isDefault">
+                {{'ADDRESS.IS_DEFAULT' | translate}}
+            </mat-checkbox>
+        </section>
+    </div>
+
+    <!--Btns-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div>
+            <button (click)="onNoClick();" mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_CLOSE' | translate}}" matTooltipPosition="left">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button class="button-general-save" (click)="onSubmit()" type="submit" [disabled]="!addressForm.valid"
+                mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_SAVE' | translate}}" matTooltipPosition="after">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</form>

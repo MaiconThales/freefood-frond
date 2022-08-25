@@ -1,0 +1,59 @@
+<mat-toolbar *ngIf="showMenu" class="mat-elevation-z8">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    <span id="titleNavBar" (click)="redirectComponent('/dashboard')">Freefood</span>
+
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+        <mat-icon (click)="redirectComponent('/shopping-car')">shopping_cart</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+        <img class="avatar mat-elevation-z8" [src]="avatarImage" />
+
+        <h4 class="name">
+            {{infoUser.username}}
+        </h4>
+        <p class="designation">{{infoUser.email}}</p>
+        <button mat-button class="menu-button" (click)="redirectComponent('/profile-edit')">
+            <mat-icon>edit</mat-icon>
+            <span>{{'SLIDE_BAR.EDIT_PROFILE' | translate }}</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" (click)="redirectComponent('/restaurant')">
+            <mat-icon>restaurant</mat-icon>
+            <span>{{'SLIDE_BAR.RESTAURANT' | translate }}</span>
+        </button>
+        <button mat-button class="menu-button" (click)="redirectComponent('/menu')">
+            <mat-icon>library_books</mat-icon>
+            <span>{{'SLIDE_BAR.MENU' | translate }}</span>
+        </button>
+        <button mat-button class="menu-button" (click)="redirectComponent('/request')">
+            <mat-icon>fastfood</mat-icon>
+            <span>{{'SLIDE_BAR.REQUEST' | translate }}</span>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/help">
+            <mat-icon>help</mat-icon>
+            <span>{{'SLIDE_BAR.HELP' | translate }}</span>
+        </button>
+        <button mat-button class="menu-button" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{'SLIDE_BAR.LOGOUT' | translate }}</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+            <app-skeleton *ngIf="loader"></app-skeleton>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

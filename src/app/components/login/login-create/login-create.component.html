@@ -1,0 +1,70 @@
+<form [formGroup]="userCreateForm">
+    <!--Title-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        {{'LOGIN.TITLE_CREATE_USER' | translate}}
+    </div>
+    <!--Username && password-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'LOGIN.LABEL_USERNAME' | translate}}
+            </mat-label>
+            <input matInput id="username" type="text" formControlName="username">
+            <mat-error *ngIf="userCreateForm.controls['username'].hasError('required')">
+                {{'LOGIN.MSG_INPUT_USERNAME' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'LOGIN.LABEL_PASSWORD' | translate}}
+            </mat-label>
+            <input matInput id="password" type="password" formControlName="password">
+            <mat-error *ngIf="userCreateForm.controls['password'].hasError('required')">
+                {{'LOGIN.LABEL_PASSWORD' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_FEMALE' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <!--Email && Language-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'LOGIN.LABEL_EMAIL' | translate}}
+            </mat-label>
+            <input matInput id="email" type="email" formControlName="email">
+            <mat-error *ngIf="userCreateForm.controls['email'].hasError('required')">
+                {{'LOGIN.MSG_INPUT_EMAIL' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_MASCULINE' | translate}}</strong>
+            </mat-error>
+            <mat-error *ngIf="userCreateForm.controls['email'].hasError('email')">
+                {{'GLOBAL_WORD.EMAIL_INVALID' | translate}}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>
+                {{'LOGIN.LABEL_LANGUAGE' | translate}}
+            </mat-label>
+            <mat-select formControlName="language" name="language">
+                <mat-option *ngFor="let l of language" [value]="l">
+                    {{l | translate}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="userCreateForm.controls['language'].hasError('required')">
+                {{'LOGIN.MSG_INPUT_LANGUAGE' | translate}} <strong>{{'GLOBAL_WORD.WORD_REQUERID_FEMALE' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <!--Btns-->
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <div>
+            <button (click)="onNoClick();" mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_CLOSE' | translate}}" matTooltipPosition="left">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button class="button-general-save" (click)="onSubmit()" type="submit" [disabled]="!userCreateForm.valid"
+                mat-icon-button matTooltip="{{'GLOBAL_WORD.WORD_SAVE' | translate}}" matTooltipPosition="after">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+    </div>
+</form>
