@@ -59,10 +59,19 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     canActivate: [AuthGuard] 
   },
-  { path: 'authentication', component: LoginAuthenticationComponent },
-  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: 'not-found', component: NotFoundComponent }
-  
+  { 
+    path: 'authentication', 
+    component: LoginAuthenticationComponent 
+  },
+  { 
+    path: '**', 
+    redirectTo: '/not-found', 
+    pathMatch: 'full' 
+  },
+  { 
+    path: 'not-found', 
+    component: NotFoundComponent 
+  }
 ];
 
 @NgModule({

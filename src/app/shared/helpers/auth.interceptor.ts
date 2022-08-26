@@ -28,6 +28,9 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token != null) {
       authReq = this.addTokenHeader(req, token);
     }
+    if(token == null) {
+      this.route.navigate([e.REDIRECT_AUTHENTICATION]);
+    }
 
     return next.handle(authReq).pipe(catchError(error => {
       if (error instanceof HttpErrorResponse && 
