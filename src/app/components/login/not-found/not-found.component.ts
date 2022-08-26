@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserInfoService } from 'src/app/services';
+
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userInfo: UserInfoService
+  ) {
+    this.verifyLoader();
+   }
 
   ngOnInit(): void {
+  }
+
+  private verifyLoader(): void {
+    this.userInfo.loader.emit(false);
   }
 
 }

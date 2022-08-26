@@ -43,7 +43,8 @@
         "WORD_REMOVE": "Remove",
         "IMAGE_SAVE_SUCCESS": "Image saved successfully",
         "DESCRIPTION_LABEL_IMAGE": "Add image",
-        "FORMAT_INVALID": "Invalid format"
+        "FORMAT_INVALID": "Invalid format",
+        "PAGE_NOT_FOUND": "Page not found"
     },
     "SLIDE_BAR": {
         "EDIT_PROFILE": "Edit profile",
